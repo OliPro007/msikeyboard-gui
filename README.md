@@ -4,9 +4,9 @@ Graphical application using QT to control the backlight of a MSI keyboard.
 
 Licensing:
 
-This program is licensed as 3-clause BSD, terms are available in the LICENCE file.
+This program is licensed as 3-clause BSD, terms are available in the LICENSE file.
 
-Based on a command-line version by bparker06: https://github.com/bparker06/msi-keyboard
+Based on a command-line version of msi-keyboard by bparker06: https://github.com/bparker06/msi-keyboard
 
 Based on a nodejs version of msi-keyboard by Steve Lacy of wearefractal.com:
 
