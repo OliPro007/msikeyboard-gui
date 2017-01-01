@@ -6,7 +6,9 @@ Licensing:
 
 This program is licensed as 3-clause BSD, terms are available in the LICENSE file.
 
-Based on a command-line version of msi-keyboard by bparker06: https://github.com/bparker06/msi-keyboard
+Based on a command-line version of [msi-keyboard](https://github.com/bparker06/msi-keyboard) by bparker06.
+
+Based on the gist referenced in the issue [#43](https://github.com/stevelacy/msi-keyboard/issues/43) of the original project.
 
 Based on a nodejs version of msi-keyboard by Steve Lacy of wearefractal.com:
 
