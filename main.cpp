@@ -5,12 +5,13 @@
 #include <QFile>
 #include <QDir>
 
+#include <cstdint>
+
 #include <iostream>
 #include <string>
 #include <sstream>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
 
     QCommandLineOption presetOption(QStringList() << "p" << "preset", "Quickly load a registered preset", "preset");
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
             QFile file(filename);
             file.open(QIODevice::ReadOnly);
             QByteArray blob = file.readAll();
-            unsigned char* data = (unsigned char*) blob.data();
+            uint8_t* data = (uint8_t*) blob.data();
             file.close();
 
             std::stringstream ss;

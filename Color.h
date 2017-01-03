@@ -3,8 +3,6 @@
 #include <cstdint>
 
 class Color {
-    uint8_t _r, _g, _b;
-
 public:
     Color(uint8_t r, uint8_t g, uint8_t b) noexcept;
 
@@ -17,4 +15,8 @@ public:
 
     static Color hue(unsigned int hue) noexcept;
     static Color rgb(int rgb) noexcept;
+
+private:
+    uint8_t _r, _g, _b;
+
 };

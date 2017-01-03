@@ -12,7 +12,7 @@ Keyboard::~Keyboard() {
         hid_close(_dev);
 }
 
-void Keyboard::write(uint8_t *data, size_t length) {
+void Keyboard::write(uint8_t* data, size_t length) {
     if (_dev == nullptr || hid_send_feature_report(_dev, data, length) != (int)length) {
         std::stringstream dump;
         for(size_t i = 0; i < length; ++i) {
