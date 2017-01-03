@@ -11,6 +11,8 @@
 #include <string>
 #include <sstream>
 
+constexpr size_t BLOB_SIZE = 10;
+
 int main(int argc, char* argv[]) {
     QApplication a(argc, argv);
 
@@ -37,12 +39,49 @@ int main(int argc, char* argv[]) {
             uint8_t* data = (uint8_t*) blob.data();
             file.close();
 
+            //DEBUG
             std::stringstream ss;
             for(int i = 0; i < blob.size(); ++i) {
                 ss << std::to_string(data[i]) << " ";
             }
 
-            std::cout << "Dump: " << ss.str() << std::endl;
+            std::cout << "DEBUG: Dump: " << ss.str() << std::endl;
+            //DEBUG
+
+            if(blob.size() != BLOB_SIZE) {
+                std::cerr << "ERROR: Corrupted data - Invalid size" << std::endl;
+                return -1;
+            }
+
+            Keyboard keyboard;
+            try{
+                switch(blob.at(0)) {
+                case Keyboard::MODE_NORMAL:
+                    keyboard.normal(Color(blob.at(1), blob.at(2), blob.at(3)),
+                                    Color(blob.at(4), blob.at(5), blob.at(6)),
+                                    Color(blob.at(7), blob.at(8), blob.at(9)));
+                    break;
+                case Keyboard::MODE_GAMING:
+                    keyboard.gaming(Color(blob.at(1), blob.at(2), blob.at(3)));
+                    break;
+                case Keyboard::MODE_BREATHING:
+                    keyboard.breathing(Color(blob.at(1), blob.at(2), blob.at(3)),
+                                       Color(blob.at(4), blob.at(5), blob.at(6)),
+                                       Color(blob.at(7), blob.at(8), blob.at(9)));
+                    break;
+                case Keyboard::MODE_WAVE:
+                    keyboard.wave(Color(blob.at(1), blob.at(2), blob.at(3)),
+                                  Color(blob.at(4), blob.at(5), blob.at(6)),
+                                  Color(blob.at(7), blob.at(8), blob.at(9)));
+                    break;
+                default:
+                    std::cerr << "ERROR: Corrupted data - Invalid mode" << std::endl;
+                }
+            } catch(std::runtime_error& e) {
+                std::cerr << "ERROR: " << e.what() << std::endl;
+                return -1;
+            }
+
             return 0;
         } else {
             std::cerr << "ERROR: The file " << filename.toStdString() << " does not exists" << std::endl;
