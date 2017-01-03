@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete _keyboard;
 }
 
 void MainWindow::on_btnRegion1_clicked()

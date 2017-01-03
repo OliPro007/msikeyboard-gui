@@ -43,7 +43,3 @@ packagesExist(hidapi-libusb) {
     unix:LIBS += -lhidapi-libusb
   }
 }
-
-debug {
-    DEFINES += DEBUG
-}

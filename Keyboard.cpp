@@ -45,7 +45,7 @@ void Keyboard::write_gradient(uint8_t region, Color first, Color second) {
     uint8_t index = (uint8_t) ((region - 1) * 3 + 1);
     write_color(FUNCTION_GRAD, index++, first);
     write_color(FUNCTION_GRAD, index++, second);
-    write_color(FUNCTION_GRAD, index, Color(0, 0, 255));
+    write_color(FUNCTION_GRAD, index, Color(0x03, 0x03, 0x03));
 }
 
 void Keyboard::normal(Color left, Color middle, Color right) {
