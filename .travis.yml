@@ -14,7 +14,7 @@ before_install:
       
 install:  
     - sudo apt-get update
-    - sudo apt-get install g++-6 qt57-meta-full
+    - sudo apt-get install g++-6 qt57-meta-full libhidapi-dev libhidapi-libusb0
         
 before_script:
     - QT_ENV_SCRIPT=$(find /opt -name 'qt*-env.sh')
