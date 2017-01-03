@@ -1,4 +1,4 @@
-# msikeyboard-gui
+# msikeyboard-gui [![Build Status](https://travis-ci.org/OliPro007/msikeyboard-gui.svg?branch=master)](https://travis-ci.org/OliPro007/msikeyboard-gui)
 Graphical application using QT to control the backlight of a MSI keyboard.
 
 
