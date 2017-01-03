@@ -4,6 +4,9 @@ compiler:
     - g++
     - clang++
 
+dist: trusty
+sudo: required
+
 before_install:
     - sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1397BC53640DB551
     - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test     
