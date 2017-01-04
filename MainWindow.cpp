@@ -8,9 +8,13 @@
 #include <QFile>
 #include <QDir>
 
+constexpr size_t BLOB_SIZE = 10;
+
 MainWindow::MainWindow(QWidget* parent) :
 QMainWindow(parent), ui(new Ui::MainWindow), _keyboard() {
     ui->setupUi(this);
+
+    readPreviousConfig();
 
     if(_keyboard.getDevice() == nullptr) {
         QMessageBox msgBox;
@@ -21,6 +25,50 @@ QMainWindow(parent), ui(new Ui::MainWindow), _keyboard() {
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+void MainWindow::readPreviousConfig() {
+    QString filename(QDir::homePath());
+    filename.append("/.msikeyboard/current.preset");
+
+    if(QFile::exists(filename)) {
+        QFile file(filename);
+        file.open(QIODevice::ReadOnly);
+        QByteArray blob = file.readAll();
+        uint8_t* data = (uint8_t*) blob.data();
+        file.close();
+
+        if(blob.size() != BLOB_SIZE)
+            return;
+
+        switch(data[0]) {
+        case Keyboard::MODE_NORMAL:
+            ui->cbModes->setCurrentIndex(0);
+            break;
+        case Keyboard::MODE_GAMING:
+            ui->cbModes->setCurrentIndex(1);
+            break;
+        case Keyboard::MODE_BREATHING:
+            ui->cbModes->setCurrentIndex(2);
+            break;
+        case Keyboard::MODE_WAVE:
+            ui->cbModes->setCurrentIndex(3);
+            break;
+        default: //Wut?
+            QMessageBox msgBox;
+            msgBox.setText("There is a typo somewhere in the mode selection");
+            msgBox.exec();
+            return;
+        }
+
+        QPalette palette;
+        palette.setColor(QPalette::Button, QColor(data[1], data[2], data[3]));
+        ui->btnRegion1->setPalette(palette);
+        palette.setColor(QPalette::Button, QColor(data[4], data[5], data[6]));
+        ui->btnRegion2->setPalette(palette);
+        palette.setColor(QPalette::Button, QColor(data[7], data[8], data[9]));
+        ui->btnRegion3->setPalette(palette);
+    }
 }
 
 void MainWindow::on_btnRegion1_clicked() {

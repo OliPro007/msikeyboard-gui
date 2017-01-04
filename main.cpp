@@ -55,24 +55,24 @@ int main(int argc, char* argv[]) {
 
             Keyboard keyboard;
             try{
-                switch(blob.at(0)) {
+                switch(data[0]) {
                 case Keyboard::MODE_NORMAL:
-                    keyboard.normal(Color(blob.at(1), blob.at(2), blob.at(3)),
-                                    Color(blob.at(4), blob.at(5), blob.at(6)),
-                                    Color(blob.at(7), blob.at(8), blob.at(9)));
+                    keyboard.normal(Color(data[1], data[2], data[3]),
+                                    Color(data[4], data[5], data[6]),
+                                    Color(data[7], data[8], data[9]));
                     break;
                 case Keyboard::MODE_GAMING:
-                    keyboard.gaming(Color(blob.at(1), blob.at(2), blob.at(3)));
+                    keyboard.gaming(Color(data[1], data[2], data[3]));
                     break;
                 case Keyboard::MODE_BREATHING:
-                    keyboard.breathing(Color(blob.at(1), blob.at(2), blob.at(3)),
-                                       Color(blob.at(4), blob.at(5), blob.at(6)),
-                                       Color(blob.at(7), blob.at(8), blob.at(9)));
+                    keyboard.breathing(Color(data[1], data[2], data[3]),
+                                       Color(data[4], data[5], data[6]),
+                                       Color(data[7], data[8], data[9]));
                     break;
                 case Keyboard::MODE_WAVE:
-                    keyboard.wave(Color(blob.at(1), blob.at(2), blob.at(3)),
-                                  Color(blob.at(4), blob.at(5), blob.at(6)),
-                                  Color(blob.at(7), blob.at(8), blob.at(9)));
+                    keyboard.wave(Color(data[1], data[2], data[3]),
+                                  Color(data[4], data[5], data[6]),
+                                  Color(data[7], data[8], data[9]));
                     break;
                 default:
                     std::cerr << "ERROR: Corrupted data - Invalid mode" << std::endl;
