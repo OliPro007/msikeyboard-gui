@@ -11,16 +11,10 @@
 constexpr size_t BLOB_SIZE = 10;
 
 MainWindow::MainWindow(QWidget* parent) :
-QMainWindow(parent), ui(new Ui::MainWindow), _keyboard() {
+QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     readPreviousConfig();
-
-    if(_keyboard.getDevice() == nullptr) {
-        QMessageBox msgBox;
-        msgBox.setText("Device not found");
-        msgBox.exec();
-    }
 }
 
 MainWindow::~MainWindow() {
@@ -108,21 +102,28 @@ void MainWindow::on_btnConfirm_clicked() {
     QByteArray blob;
 
     try {
+        Keyboard keyboard;
+        if(keyboard.getDevice() == nullptr) {
+            QMessageBox msgBox;
+            msgBox.setText("Device not found");
+            msgBox.exec();
+        }
+
         switch(ui->cbModes->currentIndex()) {
         case 0: //Normal
-            _keyboard.normal(left, center, right);
+            keyboard.normal(left, center, right);
             blob.append(Keyboard::MODE_NORMAL);
             break;
         case 1: //Gaming
-            _keyboard.gaming(left);
+            keyboard.gaming(left);
             blob.append(Keyboard::MODE_GAMING);
             break;
         case 2: //Breathing
-            _keyboard.breathing(left, center, right);
+            keyboard.breathing(left, center, right);
             blob.append(Keyboard::MODE_BREATHING);
             break;
         case 3: //Wave
-            _keyboard.wave(left, center, right);
+            keyboard.wave(left, center, right);
             blob.append(Keyboard::MODE_WAVE);
             break;
         default: //Wut?

@@ -27,7 +27,6 @@ private slots:
 
 private:
     Ui::MainWindow* ui;
-    Keyboard _keyboard;
 
     void readPreviousConfig();
 
