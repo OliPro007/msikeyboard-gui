@@ -66,22 +66,31 @@ void MainWindow::readPreviousConfig() {
 }
 
 void MainWindow::on_btnRegion1_clicked() {
+    QColor chosenColor = QColorDialog::getColor();
+    if(!chosenColor.isValid())
+        return;
+
     QPalette palette;
-    QColor chosenColor = QColorDialog::getColor(Qt::red);
     palette.setColor(QPalette::Button, chosenColor);
     ui->btnRegion1->setPalette(palette);
 }
 
 void MainWindow::on_btnRegion2_clicked() {
+    QColor chosenColor = QColorDialog::getColor();
+    if(!chosenColor.isValid())
+        return;
+
     QPalette palette;
-    QColor chosenColor = QColorDialog::getColor(Qt::red);
     palette.setColor(QPalette::Button, chosenColor);
     ui->btnRegion2->setPalette(palette);
 }
 
 void MainWindow::on_btnRegion3_clicked() {
+    QColor chosenColor = QColorDialog::getColor();
+    if(!chosenColor.isValid())
+        return;
+
     QPalette palette;
-    QColor chosenColor = QColorDialog::getColor(Qt::red);
     palette.setColor(QPalette::Button, chosenColor);
     ui->btnRegion3->setPalette(palette);
 }
@@ -162,13 +171,7 @@ void MainWindow::on_btnConfirm_clicked() {
 }
 
 void MainWindow::on_btnReset_clicked() {
-    QPalette palette;
-    palette.setColor(QPalette::Button, Qt::red);
-    ui->btnRegion1->setPalette(palette);
-    palette.setColor(QPalette::Button, Qt::green);
-    ui->btnRegion2->setPalette(palette);
-    palette.setColor(QPalette::Button, Qt::blue);
-    ui->btnRegion3->setPalette(palette);
+    readPreviousConfig();
 }
 
 void MainWindow::on_cbModes_currentIndexChanged(int index) {
