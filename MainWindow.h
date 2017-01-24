@@ -25,9 +25,14 @@ private slots:
 
     void on_cbModes_currentIndexChanged(int index);
 
+    void on_btnPresetNew_clicked();
+    void on_btnPresetSave_clicked();
+    void on_btnPresetLoad_clicked();
+
 private:
     Ui::MainWindow* ui;
 
-    void readPreviousConfig();
+    void readConfig(QString name);
+    void loadPresets();
 
 };
